@@ -1,5 +1,8 @@
 # OBEx3-mygame
 
+*Shahar glikman*
+*Rivka kakoon*
+
 In this project we used the previous project (graph algorithms) and developed a logic way to play a game
 in which a group of robots has to perform movement tasks in order to collect as many points as possible (by collecting fruit 
 of different point value).
