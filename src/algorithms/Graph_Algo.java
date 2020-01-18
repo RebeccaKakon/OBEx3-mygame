@@ -334,8 +334,8 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 		//				graflist.removeNode(current.getKey());
 		//			}
 		//		}
-		Graph_GUI gg=new Graph_GUI(graflist);
-		gg.setVisible(true);
+//		Graph_GUI gg=new Graph_GUI(graflist);
+//		gg.setVisible(true);
 
 		Graph_Algo algo=new Graph_Algo(graflist);
 		if(algo.isConnected()==true) {

@@ -53,12 +53,54 @@ import utils.Point3D;
 
 public class MyGameGUI extends JFrame implements ActionListener, MouseListener, GraphListener {
 
-	private DGraph gg;
-	LinkedList<Fruits> fruits;
-	LinkedList<Robot> robots;
-	game_service game;
-	algo cal;
-	boolean gamemanual;
+	public DGraph gg;
+	private LinkedList<Fruits> fruits;
+	private LinkedList<Robot> robots;
+	private game_service game;
+	private algo cal;
+	private boolean gamemanual;
+	public static boolean insert=true;
+	public static boolean move=false;
+
+	public void setGamemanual(boolean gamemanual) {
+		this.gamemanual = gamemanual;
+	}
+
+	public void setGg(DGraph gg) {
+		this.gg = gg;
+	}
+
+	public DGraph getGg() {
+		return gg;
+	}
+
+	public LinkedList<Robot> getRobots() {
+		return robots;
+	}
+
+	public game_service getGame() {
+		return game;
+	}
+
+	public algo getCal() {
+		return cal;
+	}
+
+	public boolean isGamemanual() {
+		return gamemanual;
+	}
+
+	public static long getStart() {
+		return start;
+	}
+
+	public static boolean isTwo() {
+		return two;
+	}
+
+	public static Point3D getSrc() {
+		return src;
+	}
 
 	/**
 	 * 
@@ -332,107 +374,107 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 
 	static long start = System.currentTimeMillis();
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	//	public static void main(String[] args) {
+	//		// TODO Auto-generated method stub
+	//
+	//		System.out.println("choose tour game");
+	//		Scanner choosenumgame=new Scanner(System.in);
+	//		int numofgame= choosenumgame.nextInt();
+	//		game_service game=Game_Server.getServer(numofgame);
+	//		System.out.println(game.toString());
+	//		MyGameGUI mygame=new MyGameGUI(game);
+	//		mygame.gg=new DGraph();
+	//		String g=game.getGraph();
+	//		mygame.gg.init (g);
+	//
+	//		String gameinfo=game.toString();
+	//		System.out.println("1 for automatic, 0 to yourself");
+	//		Scanner choosegame=new Scanner(System.in);
+	//		int choose = choosegame.nextInt();
+	//
+	//		if(choose ==1) {
+	//			timethread a=new timethread(mygame,game,mygame.robots);
+	//			a.start();
+	//			mygame.automatic();
+	//
+	//		}
+	//		else
+	//		if(choose ==0) {
+	//			timethread a=new timethread(mygame,game,mygame.robots);
+	//			a.start();
+	//			mygame.gamemanual=true;
+	//			mygame.manual();
+	//
+	//		}
+	//
+	//
+	//
+	//	}
 
-		System.out.println("choose tour game");
-		Scanner choosenumgame=new Scanner(System.in);
-		int numofgame= choosenumgame.nextInt();
-		game_service game=Game_Server.getServer(numofgame);
-		System.out.println(game.toString());
-		MyGameGUI mygame=new MyGameGUI(game);
-		mygame.gg=new DGraph();
-		String g=game.getGraph();
-		mygame.gg.init (g);
 
-		String gameinfo=game.toString();
-		System.out.println("1 for automatic, 0 to yourself");
-		Scanner choosegame=new Scanner(System.in);
-		int choose = choosegame.nextInt();
-
-		if(choose ==1) {
-			timethread a=new timethread(mygame,game,mygame.robots);
-			a.start();
-			mygame.automatic();
-
-		}
-		else
-		if(choose ==0) {
-			timethread a=new timethread(mygame,game,mygame.robots);
-			a.start();
-			mygame.gamemanual=true;
-			mygame.manual();
-
-		}
-
-
-
-	}
-
-
-	private  void manual() {
+	public void manual() {
 		// TODO Auto-generated method stub
 		Fruits ff=new Fruits();
 		fruits=(LinkedList<Fruits>) ff.initf(game.getFruits().toString(),gg);
 		this.setVisible(true);
-		
-
-	}
-
-	private   void automatic() {
-		// TODO Auto-generated method stub
-		algo cal=new algo();
-		Fruits ff=new Fruits();
-
-		//	System.out.println(game.getFruits().toString());
-		fruits=(LinkedList<Fruits>) ff.initf(game.getFruits().toString(),gg);
-
-		Iterator w=fruits.iterator();
-		while(w.hasNext()) {
-			Fruits c=(Fruits) w.next();
-			//.out.println("type of fruit="+c.getType());
-		}
-
-
-		int numrobot=cal.numrobot(game.toString());
-		int count=0;
-		while(count!=numrobot) {
-			this.putRobot(game , count);
-			count++;
-		}
-		Robot y=new Robot();
-		this.robots= y.initr(game.getRobots().toString());
-		this.setVisible(true);
-		game.startGame();
-
-		while(game.isRunning()) {
-
-			cal.moveRobots(game, gg);
-			
-		}
-
-
-
-		//System.out.println(game.toString());
-		System.exit(0);
 
 
 	}
+
+	//	public  void automatic() {
+	//		// TODO Auto-generated method stub
+	//		algo cal=new algo();
+	//		Fruits ff=new Fruits();
+	//
+	//		//	System.out.println(game.getFruits().toString());
+	//		fruits=(LinkedList<Fruits>) ff.initf(game.getFruits().toString(),gg);
+	//
+	//		Iterator w=fruits.iterator();
+	//		while(w.hasNext()) {
+	//			Fruits c=(Fruits) w.next();
+	//			//.out.println("type of fruit="+c.getType());
+	//		}
+	//
+	//
+	//		int numrobot=cal.numrobot(game.toString());
+	//		int count=0;
+	//		while(count!=numrobot) {
+	//			this.putRobot(game , count);
+	//			count++;
+	//		}
+	//		Robot y=new Robot();
+	//		this.robots= y.initr(game.getRobots().toString());
+	//		this.setVisible(true);
+	//		game.startGame();
+	//
+	//		while(game.isRunning()) {
+	//
+	//			cal.moveRobots(game, gg);
+	//			
+	//		}
+	//
+	//
+	//
+	//		//System.out.println(game.toString());
+	//		System.exit(0);
+	//
+	//
+	//	}
 
 
 	public LinkedList<Fruits> getFruits() {
 		return fruits;
 	}
 
-	private  void putRobot(game_service game, int count) {
-		Point3D p = new Point3D(0,0,0);
-
-		game.addRobot(count);
-
-		Robot r = new Robot(count,p, 1,0,0,0);
-		this.robots.add(r);
-
-	}
+	//	private  void putRobot(game_service game, int count) {
+	//		Point3D p = new Point3D(0,0,0);
+	//
+	//		game.addRobot(count);
+	//
+	//		Robot r = new Robot(count,p, 1,0,0,0);
+	//		this.robots.add(r);
+	//
+	//	}
 
 
 	private static int nextNode2(DGraph g, int src,LinkedList<Fruits> fruits) {
@@ -480,23 +522,26 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	}
 	public static boolean two =false;
 	public static Point3D src=null;
-	
+	public static int count=0;
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		if(gamemanual == true) {
-			int count=0;
+
 			algo cal2=new algo();
 			int numofrobot=cal2.numrobot(game.toString());
 			//System.out.println("numofrobot"+numofrobot);
 			algo cal=new algo(this.gg,this.fruits,this.robots,this.game,numofrobot);
 
-			if (e.getClickCount() == 1) {
+
+			if (insert==true) {   //e.getClickCount() == 1
 				System.out.println("i clickes="+e.getX()+","+e.getY());
 				if(count!=numofrobot){
 
 					//System.out.println("add robot by click");
-					boolean added=cal.addrobotbyclick(e,this.getWidth(),this.getHeight());
+					boolean added=cal.addrobotbyclick(e,this.getWidth(),this.getHeight(),count);
 					Robot y=new Robot();
 					this.robots= y.initr(game.getRobots().toString());
 					System.out.println(added);
@@ -504,28 +549,42 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 						count++;
 
 				}
+				else {
+					insert=false;
+					game.startGame();
+					move=true;
+				}
+
+
 
 			}
-			
-           
-            int x=e.getX();
+
+
+			int x=e.getX();
 			int y=e.getY();
-			if (e.getClickCount() == 2 ) {
-				game.startGame();
-				
-				
-					src=new Point3D(x,y,0);
-					System.out.println("i clickes="+src.x()+","+src.y());
-					
-			
+
+			if (move==true ) {
+				Robot temp=new Robot();
+				this.robots=temp.initr(game.getRobots().toString());
+
+				src=new Point3D(x,y,0);
+				System.out.println("i clickes="+src.x()+","+src.y());
 				cal.movemanual(this.getWidth(),this.getHeight(), src);
-				
+				Iterator<Robot> yy=robots.iterator();
+				System.out.println("the robot in my linkedlist=");
+				while(yy.hasNext()) {
+					Robot temp2=yy.next();
+					System.out.println(temp2.getId());
+				}
+
+
 
 			}
 
 
 		}
 	}
+
 
 
 

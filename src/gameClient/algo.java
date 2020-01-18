@@ -48,6 +48,20 @@ public class algo {
 		Thread a=new Thread();
 		a.start();
 	}
+	public void putRobot(game_service game, int count,LinkedList<Robot> robots) {
+		Point3D p = new Point3D(0,0,0);
+
+		game.addRobot(count);
+
+		Robot r = new Robot(count,p, 1,0,0,0);
+		robots.add(r);
+		//		Iterator<Robot> y=robots.iterator();
+		//		while(y.hasNext()) {
+		//			Robot temp=y.next();
+		//			System.out.println(temp.getId());
+		//		}
+
+	}
 
 	public void moveRobots(game_service game, DGraph gg) {
 		algo cal=new algo();
@@ -151,7 +165,7 @@ public class algo {
 
 	} 
 
-	public boolean addrobotbyclick(MouseEvent e,int width, int height) {
+	public boolean addrobotbyclick(MouseEvent e,int width, int height,int idrobot) {
 		// TODO Auto-generated method stub
 		System.out.println("in function");
 		int x = e.getX();
@@ -185,7 +199,8 @@ public class algo {
 		game.addRobot(srcnode);
 		Robot t=new Robot();
 		this.robots=t.initr(game.getRobots().toString());
-		Robot r = new Robot(srcnode,p, 1,0,0,0);
+		Robot r = new Robot(idrobot,p, 1,0,0,0);
+		this.robots.add(r);
 		return true;
 
 	}
@@ -194,6 +209,13 @@ public class algo {
 	public static Point3D des=null;
 	public void movemanual(int width, int height, Point3D click) {
 		// TODO Auto-generated method stub
+//		
+//		Iterator<Robot> yy=robots.iterator();
+//		System.out.println("the robot in my movemanual=");
+//		while(yy.hasNext()) {
+//			Robot temp2=yy.next();
+//			System.out.println(temp2.getId());
+//		}
 		if(src==null) {
 			src=click;
 		}
@@ -201,8 +223,8 @@ public class algo {
 			if(src!=null && des==null) {
 				des=click;
 			}
-		
-		
+
+
 
 		if(src !=null && des != null) {
 			System.out.println("src="+src.x()+","+src.y());
@@ -217,30 +239,30 @@ public class algo {
 				System.out.println("sll robot="+r.getId());
 				System.out.println("sll robot="+r.getPos().x()+","+r.getPos().y());
 				double robotrx=scale(r.getPos().x(),this.gg.getMinx(),this.gg.getMaxx(), 50,width- 50);
-				double robotry=scale(r.getPos().x(),this.gg.getMinx(),this.gg.getMaxx(), 50,width- 50);
+				double robotry=scale(r.getPos().y(),this.gg.getMiny(),this.gg.getMaxy(), 70,height-70);
 				Point3D rob=new Point3D(robotrx,robotry,0);
-				
+
 				System.out.println("robot is in ="+rob.x()+","+rob.y());
 				if(distance(rob,src)<min) {
 					//if(distance(rob,src)<100) {
-						System.out.println("i found robot close to src");
-						min=distance(rob,src);
-						System.out.println("r="+r.getId());
-						answer=r;
+					System.out.println("i found robot close to src");
+					min=distance(rob,src);
+					System.out.println("r="+r.getId());
+					answer=r;
 					//}
 
 
 				}
 			}
 			nodedata answer2=null;
-			
+
 			Iterator<node_data> W=this.gg.getHashnodes().values().iterator();
 			while(W.hasNext()) {
 				nodedata currentnew=(nodedata) W.next();
 				double xnode=scale(currentnew.getLocation().x(),this.gg.getMinx(),this.gg.getMaxx(), 50,width- 50);
 				double ynode=scale(currentnew.getLocation().y(),this.gg.getMiny(),this.gg.getMaxy(), 70,height-70);
 				Point3D current=new Point3D( xnode,ynode,0);
-				if(distance(current,des)<30) {
+				if(distance(current,des)<100) {
 					if(distance(current,des)<mindes) {
 						System.out.println("i found node close to des");
 						mindes=distance(current,des);
@@ -259,15 +281,15 @@ public class algo {
 				robots= y.initr(game.getRobots().toString());
 				game.move();
 				robots= y.initr(game.getRobots().toString());
-				
-				
+
+
 			}
 			src=null;
 			des=null;
 
 
 		}
-		
+
 	}
 }
 
