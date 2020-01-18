@@ -1,6 +1,6 @@
 # OBEx3-mygame
 
-*Shahar glikman*
+*Shahar glikman_*
 *Rivka kakoon*
 
 In this project we used the previous project (graph algorithms) and developed a logic way to play a game
