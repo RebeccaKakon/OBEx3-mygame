@@ -15,6 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -50,6 +51,7 @@ import dataStructure.nodedata;
 import gui.GraphGUIstddraw;
 import gui.Graph_GUI;
 import oop_dataStructure.oop_graph;
+import utils.KML;
 import utils.Point3D;
 
 
@@ -59,16 +61,17 @@ import utils.Point3D;
  * 
  */
 
-public class MyGameGUI extends JFrame implements ActionListener, MouseListener, GraphListener {
+public class MyGameGUI extends JFrame implements ActionListener, MouseListener, GraphListener{
 
 	public DGraph gg;
-	private LinkedList<Fruits> fruits;
-	private LinkedList<Robot> robots;
-	private game_service game;
+	public static LinkedList<Fruits> fruits;
+	public static LinkedList<Robot> robots;
+	public static game_service game;
 	private algo cal;
 	private boolean gamemanual;
 	public static boolean insert=true;
 	public static boolean move=false;
+	
 
 	public void setGamemanual(boolean gamemanual) {
 		this.gamemanual = gamemanual;
@@ -82,11 +85,11 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 		return gg;
 	}
 
-	public LinkedList<Robot> getRobots() {
+	public static LinkedList<Robot> getRobots() {
 		return robots;
 	}
 
-	public game_service getGame() {
+	public  game_service getGame() {
 		return game;
 	}
 
@@ -202,6 +205,11 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	@Override
 	public void paint(Graphics f) {
 		// System.out.println("9999999");
+		 
+		
+	   
+		
+		
 		BufferedImage bufferedImage = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = bufferedImage.createGraphics();
 
@@ -276,6 +284,25 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 				}
 			}
 		}
+		//today
+		g.setColor(Color.BLACK);
+		String a=" ";
+		String gameinfo=game.toString();
+		System.out.println(gameinfo);
+		JSONObject line;
+		try {
+			line = new JSONObject(gameinfo);
+			JSONObject ttt = line.getJSONObject("GameServer");
+			a=ttt.toString();
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		g.drawString(a, this.getWidth()-550, this.getHeight()-180);
+		//today
+		
 
 		if (this.fruits != null) {
 			fruits.clear();
@@ -304,6 +331,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 			if (current.getType() == 1) {
 				try {
 					img = ImageIO.read(new File("apple.png"));
+					Playingthegame.kmlstring.Place_Mark("food_apple", current.getPos().toString());
 				} catch (IOException e) {
 					System.out.println("cant find");
 				}
@@ -315,6 +343,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 			if (current.getType() == -1) {
 				try {
 					img = ImageIO.read(new File("donat.jpg"));
+					Playingthegame.kmlstring.Place_Mark("food_donat", current.getPos().toString());
 				} catch (IOException e) {
 					System.out.println("cant find");
 				}
@@ -365,6 +394,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 			}
 			// Graphics d = img.getGraphics();
 			Image newimg = img.getScaledInstance(30, 30, 30);
+			Playingthegame.kmlstring.Place_Mark("robot",r.getPos().toString());
 			g.drawImage(newimg, (int) xx, (int) yy, EverythingButPlayer);
 			//
 			this.setVisible(true);
@@ -427,11 +457,15 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	
 
 
-	public void manual() {
+	public void manual(game_service game) {
 		// TODO Auto-generated method stub
+		
 		Fruits ff=new Fruits();
-		fruits=(LinkedList<Fruits>) ff.initf(game.getFruits().toString(),gg);
+		this.fruits=(LinkedList<Fruits>) ff.initf(game.getFruits().toString(),gg);
+		this.gg.init(game.getGraph().toString());
 		this.setVisible(true);
+		this.repaint();
+		
 
 
 	}
@@ -477,7 +511,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	//	}
 
 
-	public LinkedList<Fruits> getFruits() {
+	public static LinkedList<Fruits> getFruits() {
 		return fruits;
 	}
 
@@ -565,6 +599,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		if(gamemanual == true) {
+			
 
 			algo cal2=new algo();
 			int numofrobot=cal2.numrobot(game.toString());
@@ -588,6 +623,12 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 				else {
 					insert=false;
 					game.startGame();
+					timethread a=new timethread(this,game,this.getRobots());
+					a.start();
+					
+					
+					
+					
 					move=true;
 				}
 
@@ -651,6 +692,28 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 		// TODO Auto-generated method stub
 
 	}
+
+//	@Override
+//	public void run() {
+//		// TODO Auto-generated method stub
+//		while(this.game.isRunning()) {
+//			try {
+//				timethread.sleep(100);
+//				
+//				this.repaint();
+//				this.game.move();
+//				
+//				Robot y=new Robot();
+//				this.robots=y.initr(game.getRobots().toString());
+//			} 
+//			catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}	
+//
+//			//System.out.println("i draw");
+//		}
+//	}
 
 
 

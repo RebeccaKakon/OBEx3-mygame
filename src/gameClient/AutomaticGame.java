@@ -1,5 +1,6 @@
 package gameClient;
 
+import java.text.ParseException;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -7,6 +8,7 @@ import Server.game_service;
 import dataStructure.DGraph;
 import dataStructure.Fruits;
 import dataStructure.Robot;
+import utils.KML;
 
 /**
  * This class represents an automatic game:
@@ -25,7 +27,7 @@ import dataStructure.Robot;
  */
 
 public class AutomaticGame {
-	public  void automatic( LinkedList<Fruits> fruits, LinkedList<Robot> robots,game_service game,DGraph gg) {
+	public  void automatic( LinkedList<Fruits> fruits, LinkedList<Robot> robots,game_service game,DGraph gg,timethread a) {
 		// TODO Auto-generated method stub
 		algo cal=new algo();
 		Fruits ff=new Fruits();
@@ -50,18 +52,39 @@ public class AutomaticGame {
 		robots= y.initr(game.getRobots().toString());
 		//this.setVisible(true);
 		game.startGame();
-
+		a.start();
+//		KML k=new KML();
+//		Thread kml=new Thread (new Runnable() {
+//			@Override
+//			public void run() {
+//				try {
+//					k.objKML();
+//				}
+//				catch(ParseException|InterruptedException ex) {
+//					ex.printStackTrace();
+//				}
+//			}
+//			
+//		});
+//		kml.start();
 		while(game.isRunning()) {
 
 			cal.moveRobots(game, gg);
+			if(game.timeToEnd()<1)
+				a.exit=false;
 			
 		}
+		Playingthegame.kmlstring.kmlfinishgame();
+		game.stopGame();   //19/1 nite
+		a.exit=false;
+		
 
 
-
+		
 		//System.out.println(game.toString());
 		
 		System.exit(0);
+		
 
 
 	}

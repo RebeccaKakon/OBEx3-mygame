@@ -8,6 +8,7 @@ import Server.game_service;
 import dataStructure.DGraph;
 import dataStructure.Fruits;
 import dataStructure.Robot;
+import utils.KML;
 
 /**
  * In this class the player choose the game he wants to play- from [0-23]
@@ -20,35 +21,51 @@ import dataStructure.Robot;
 
 public class Playingthegame {
 
+	public static KML kmlstring;
+
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		//today
-		tryjframewindow trynewgui=new tryjframewindow();
-		int numofgame= trynewgui.getNumofgame();
+		System.out.println("Enter a game you want to play");
+		System.out.println("Enter 1 for automatic, 0 to yourself");
+//		tryjframewindow trynewgui=new tryjframewindow();
+//		trynewgui.setVisible(true);
+//		
+//
+//		int numofgame=100;
+//		int choose=2;
+//		
+//		while(trynewgui.getNumofgame()==100 || trynewgui.getHowtoplay()==2) {
+//			 numofgame= trynewgui.getNumofgame();
+//			 choose = trynewgui.getHowtoplay();
+//			
+//		}
+//		
+//		System.out.println("num of game="+numofgame);
+//		System.out.println("howto play="+choose);
 		
-		System.out.println("1 for automatic, 0 to yourself");
-	  //  Scanner choosegame=new Scanner(System.in);
-		boolean ww=false;
-		int choose=1;
-		while(ww==false) {
-		 choose = trynewgui.getHowtoplay();
-		 System.out.println();
-		if(choose!=2)
-			ww=true;
-		}
+		Scanner in=new Scanner(System.in);
+		int b=in.nextInt();
+		int numofgame=b; 
 		
-		//today 
-//		System.out.println("choose tour game");
-//		Scanner choosenumgame=new Scanner(System.in);
-//		int numofgame= choosenumgame.nextInt();
+		Scanner in2=new Scanner(System.in);
+		int b2=in.nextInt();
+		int choose=b2;
+		
+		
+		
+
+
+
+		kmlstring=new KML (numofgame);
 		game_service game=Game_Server.getServer(numofgame);
 		System.out.println(game.toString());
-		
-		
-		trynewgui.setVisible(false);
-		
+
+
+	//	trynewgui.setVisible(false);
+
 		//System.out.println(trynewgui.getNumofgame()+","+trynewgui.getHowtoplay());
 		MyGameGUI mygame=new MyGameGUI(game);
 		mygame.setGg(new DGraph());
@@ -56,28 +73,35 @@ public class Playingthegame {
 		mygame.gg.init (g);
 
 		String gameinfo=game.toString();
-		
+
 
 		if(choose ==1) {
 			timethread a=new timethread(mygame,game,mygame.getRobots());
-			a.start();
+			//a.start();
 			AutomaticGame temp=new AutomaticGame();
-			temp.automatic(mygame.getFruits(), mygame.getRobots(), mygame.getGame(), mygame.getGg());
+			temp.automatic(mygame.getFruits(), mygame.getRobots(), mygame.getGame(), mygame.getGg(), a);
+			a.exit=false;
+			kmlstring.kmlfinishgame();
 			//game.stopGame();
-		
-			//a.stop();
+
 
 		}
 		else
-		if(choose ==0) {
-			timethread a=new timethread(mygame,game,mygame.getRobots());
-			a.start();
-			mygame.setGamemanual(true);
-			mygame.manual();
-			//a.stop();
+			if(choose ==0) {
+				//			timethread a=new timethread(mygame,game,mygame.getRobots());
+				//			a.start();
+				mygame.setGamemanual(true);
+				mygame.manual(mygame.getGame());
+				
+				
+				
 
-		}
-	    
+
+
+			}
+		
+		
+
 
 
 	}

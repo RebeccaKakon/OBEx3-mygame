@@ -9,18 +9,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import dataStructure.GraphListener;
 
-public class tryjframewindow extends JFrame implements ActionListener, MouseListener, GraphListener {
+public class tryjframewindow extends JFrame implements ActionListener, MouseListener, GraphListener{
 
 	public int getNumofgame() {
 		return numofgame;
 	}
 
-	private int numofgame;
+	private int numofgame=100;
 	private int howtoplay=2;
+	
 
 
 	public tryjframewindow() {
@@ -40,6 +42,7 @@ public class tryjframewindow extends JFrame implements ActionListener, MouseList
 		MenuBar menuBar = new MenuBar();
 		Menu choose = new Menu("choose a game");
 		Menu choose2 = new Menu("choose how to play");
+
 		menuBar.add(choose);
 		menuBar.add(choose2);
 
@@ -136,7 +139,6 @@ public class tryjframewindow extends JFrame implements ActionListener, MouseList
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		tryjframewindow t= new tryjframewindow();
 
 	}
 
@@ -149,7 +151,7 @@ public class tryjframewindow extends JFrame implements ActionListener, MouseList
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -180,15 +182,19 @@ public class tryjframewindow extends JFrame implements ActionListener, MouseList
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+
+
 		String action = e.getActionCommand();
 		System.out.println(action);
 		if(action.equals("automatic") || action.equals("manual")) {
 			if(action.equals("automatic")) {
+				System.out.println("*****");
 				this.howtoplay=1;
 			}
-			if(action.equals("manual")) {
-				this.howtoplay=0;
-			}
+			else
+				if(action.equals("manual")) {
+					this.howtoplay=0;
+				}
 
 		}
 		else {
@@ -268,6 +274,7 @@ public class tryjframewindow extends JFrame implements ActionListener, MouseList
 			if(numofgame==23) {
 				this.numofgame=23;
 			}
+			System.out.println("numofgame="+numofgame);
 		}
 		//		}
 

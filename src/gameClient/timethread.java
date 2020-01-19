@@ -19,6 +19,8 @@ public class timethread extends Thread  {
 	MyGameGUI gui;
 	game_service game;
 	LinkedList<Robot>Robots;
+	public boolean exit=true;
+
 
 
 	public timethread(MyGameGUI gui,game_service game,LinkedList<Robot>Robots) {
@@ -32,32 +34,42 @@ public class timethread extends Thread  {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	/**
-	 * repaint while the game is running,
+	 * repaint 
 	 * 
 	 */
 
 	public void run() {
-	
-			while(this.isAlive() ) {
-				try {
-					timethread.sleep(100);
-					this.gui.repaint();
-					this.game.move();
-					Robot y=new Robot();
-					this.Robots=y.initr(game.getRobots().toString());
-				} 
-				catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	
-
-				//System.out.println("i draw");
-			}
 
 
-	
+		while(this.isAlive() && this.game.isRunning() &&this.exit==true && this.game.timeToEnd()>0.1) {
+			try {
+				timethread.sleep(100);
+
+				if(this.game!=null)
+
+					if(this.game.isRunning()) {
+						this.game.move();
+						this.gui.repaint();
+					}
+
+
+
+				Robot y=new Robot();
+				this.Robots=y.initr(game.getRobots().toString());
+			} 
+			catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+
+			//System.out.println("i draw");
+		}
+		return;
+
+
+
 	}
 
 }
