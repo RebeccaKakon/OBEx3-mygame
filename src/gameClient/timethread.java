@@ -6,6 +6,14 @@ import Server.game_service;
 import dataStructure.Robot;
 import gui.Graph_GUI;
 
+/**
+ * This class is a thread that helps us repaint while the game is running,
+ * it lets us see the game and the changes of the robots and fruits places.
+ *
+ *
+ *
+ */
+
 public class timethread extends Thread  {
 
 	MyGameGUI gui;
@@ -24,10 +32,15 @@ public class timethread extends Thread  {
 		// TODO Auto-generated method stub
 
 	}
+	
+	/**
+	 * repaint while the game is running,
+	 * 
+	 */
 
 	public void run() {
-		
-			while(this.isAlive()) {
+	
+			while(this.isAlive() ) {
 				try {
 					timethread.sleep(100);
 					this.gui.repaint();
@@ -42,8 +55,9 @@ public class timethread extends Thread  {
 
 				//System.out.println("i draw");
 			}
-		
-		
+
+
+	
 	}
 
 }

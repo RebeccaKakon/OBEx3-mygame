@@ -1,6 +1,7 @@
 package gameClient;
 
 import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -50,6 +51,13 @@ import gui.GraphGUIstddraw;
 import gui.Graph_GUI;
 import oop_dataStructure.oop_graph;
 import utils.Point3D;
+
+
+/**
+ * This class represents a graphical appearance, showing the user the game he had chosen to play.
+ * 
+ * 
+ */
 
 public class MyGameGUI extends JFrame implements ActionListener, MouseListener, GraphListener {
 
@@ -105,10 +113,10 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	/**
 	 * 
 	 * @param data  denote some data to be scaled
-	 * @param r_min the minimum of the range of your data
-	 * @param r_max the maximum of the range of your data
-	 * @param t_min the minimum of the range of your desired target scaling
-	 * @param t_max the maximum of the range of your desired target scaling
+	 * @param r_min the minimum of the range of our data
+	 * @param r_max the maximum of the range of our data
+	 * @param t_min the minimum of the range of our desired target scaling
+	 * @param t_max the maximum of the range of our desired target scaling
 	 * @return
 	 */
 	private static double scale(double data, double r_min, double r_max, // 12/1
@@ -306,7 +314,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 			}
 			if (current.getType() == -1) {
 				try {
-					img = ImageIO.read(new File("apple.png"));
+					img = ImageIO.read(new File("donat.jpg"));
 				} catch (IOException e) {
 					System.out.println("cant find");
 				}
@@ -410,6 +418,13 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	//
 	//
 	//	}
+	
+	/**
+	 * This function represents the manual game.
+	 * 
+	 * 
+	 */
+	
 
 
 	public void manual() {
@@ -513,7 +528,18 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 
 	}
 
-
+	/**
+	 * This function is a function that helps our "paint" function,
+	 * to now where the text need to be, where the yellow dots.
+	 * @param double x1 - x of first point
+	 * @param double y1 -y of first point
+	 * @param double x2 - x of second point
+	 * @param double y2- y of second point
+	 * @param double x0 -the value for calculating f(x0)
+	 * @return the f(x)
+	 * 
+	 * 
+	 */
 
 	public static double placeontheline(double x1, double y1, double x2, double y2, double x0) { // return the f(x0)
 		double m = (y2 - y1) / (x2 - x1);
@@ -523,6 +549,16 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	public static boolean two =false;
 	public static Point3D src=null;
 	public static int count=0;
+	
+	/**
+	 * This function helps us play the manual game,
+	 * The function is using the "addrobotbyclick" function,
+	 * and after placing the robot the game is starting and the function is 
+	 * using the "movemanual" function to play the game 
+	 * @param MouseEvent e- the mouse click that the player had clicked.
+	 * 
+	 * 
+	 */
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

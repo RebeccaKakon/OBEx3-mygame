@@ -8,6 +8,22 @@ import dataStructure.DGraph;
 import dataStructure.Fruits;
 import dataStructure.Robot;
 
+/**
+ * This class represents an automatic game:
+ * In this class we have one function: "automatic"
+ * This function gets the list of robot,list of fruits,game and the graph.
+ * checks how much robots does the game has,used the function "puts robot" to 
+ * place all the robot of the game and starting the game.
+ * after the game is starting the function uses the function "moveRobots" until the end 
+ * of the game.
+ * 
+ * @param  LinkedList<Fruits> fruits
+ * @param  LinkedList<Robot> robots 
+ * @param  game_service game  -the game that is going to be played.
+ * @param  DGraph gg - the graph of the game
+ *
+ */
+
 public class AutomaticGame {
 	public  void automatic( LinkedList<Fruits> fruits, LinkedList<Robot> robots,game_service game,DGraph gg) {
 		// TODO Auto-generated method stub
@@ -44,6 +60,7 @@ public class AutomaticGame {
 
 
 		//System.out.println(game.toString());
+		
 		System.exit(0);
 
 

@@ -1,6 +1,8 @@
 package gameClient;
 
 import java.awt.event.MouseEvent;
+
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -22,6 +24,14 @@ import dataStructure.graph;
 import dataStructure.node_data;
 import dataStructure.nodedata;
 import utils.Point3D;
+
+/**
+ * This class represents the algorithms that are being used at our games:
+ * placing the robots, moving the robot,how much robots we have, scale that helps us with our Gui,
+ * add robot by click, and a function for moving the manual game.
+ *
+ */
+
 
 public class algo {
 
@@ -45,9 +55,17 @@ public class algo {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Thread a=new Thread();
-		a.start();
+//		Thread a=new Thread();
+//		a.start();
 	}
+	
+	/**
+	 * This function helps us placing the robots of the automatic game on different nodes,
+	 * the function gets a param name count, witch represent how much robots we had placed till this function.
+	 * This function adds a robot to our game and adds this robot to our list of robot. 
+	 *
+	 */
+	
 	public void putRobot(game_service game, int count,LinkedList<Robot> robots) {
 		Point3D p = new Point3D(0,0,0);
 
@@ -62,6 +80,14 @@ public class algo {
 		//		}
 
 	}
+	
+	/**
+	 * This function helps moving our robots in the automatic game.
+	 * In this function each time we will move a different robot, and update 
+	 * our lists.
+	 * @param game, gg
+	 * 
+	 */
 
 	public void moveRobots(game_service game, DGraph gg) {
 		algo cal=new algo();
@@ -112,6 +138,13 @@ public class algo {
 
 
 
+	/**
+	 * This function helps us decide in each move where should our robot will go. 
+	 * The function gets the game that we are playing, and the src that our robot is on
+	 * and decide what will be the dest of this robot.
+	 * @param graph game
+	 * @param src
+	 */
 
 
 	public  int nextNode(graph g, int src) {
@@ -125,6 +158,14 @@ public class algo {
 		ans = itr.next().getDest();
 		return ans;
 	}
+	
+	/**
+	 * This function helps calculate how many robots we have in our game.
+	 * This is a function that being used in moveRobots function and with the number that
+	 * this function returns, the moveRobots function will add and move this robots.
+	 * @param String gameinfo - Information about the current game
+	 */
+	
 	public  int numrobot(String gameinfo) {
 		// TODO Auto-generated method stub
 
@@ -149,6 +190,13 @@ public class algo {
 
 
 	}
+	
+	/**
+	 * This function helps calculate the distance between two points 
+	 * @param Point3D p1 
+	 * @param Point3D p2 
+	 */
+	
 	public double distance(Point3D p1, Point3D p2) {
 		// TODO Auto-generated method stub
 
@@ -157,6 +205,18 @@ public class algo {
 
 
 	}
+	
+	/**
+	 * This function helps calculate the place we need to draw our lists of the game,
+	 * this function is being uses in our Gui class also.
+	 * 
+	 * @param double r_min - the min node of our nodes
+	 * @param double r_max - the max node of our nodes
+	 * @param double t_min -our window min size
+	 * @param double t_max -our window max size
+	 * @return- the correct scale by our Gui.
+	 */
+	
 	private static double scale(double data, double r_min, double r_max, // 12/1
 			double t_min, double t_max) {
 
@@ -164,6 +224,19 @@ public class algo {
 		return res;
 
 	} 
+	
+	/**
+	 * This function helps in our manual game, placing the robots 
+	 * where the player choosed he wants to put the robots.
+	 * 
+	 * @param MouseEvent e - the click that our player did.
+	 * @param int width - of our Gui
+	 * @param int height -of our Gui
+	 * @param int idrobot -the robot that suppose to be placed now
+	 * Our function going all over our nodes of the graph and finding the 
+	 * closest node to the Point that the player had clicked- this is the node that our function is placing the robot.
+	 * @return- true if succeeded to place the robot.
+	 */
 
 	public boolean addrobotbyclick(MouseEvent e,int width, int height,int idrobot) {
 		// TODO Auto-generated method stub
@@ -207,6 +280,25 @@ public class algo {
 
 	public static Point3D src=null; 
 	public static Point3D des=null;
+	
+	/**
+	 * This function represents the movement of a manual game:
+	 * The function gets a Point that represent the src or the dest of the robot,
+	 * saves that point until this function gets another point.
+	 * after this function has the src and the des of the robot the player wants to move, 
+	 * we will pass all over our robot and see witch robot is the closest to the place where the player 
+	 * had clicked- this is the robot we will going to move.
+	 * we will pass all over our nodes and see witch nodes is the closest to the place where the player 
+	 * had clicked- this is the place we will send the robot.
+	 * 
+	 * @param click -the Point represent the src or the dest.
+	 * @param int width - of our Gui
+	 * @param int height -of our Gui
+	 * 
+	 *
+	 */
+	
+	
 	public void movemanual(int width, int height, Point3D click) {
 		// TODO Auto-generated method stub
 //		

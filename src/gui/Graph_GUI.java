@@ -256,7 +256,7 @@ public class Graph_GUI extends JFrame implements ActionListener, MouseListener, 
 				}
 				if (current.getType() == -1) {
 					try {
-						img = ImageIO.read(new File("apple.png"));
+						img = ImageIO.read(new File("donat.jpg"));
 					} catch (IOException e) {
 						System.out.println("cant find");
 					}
