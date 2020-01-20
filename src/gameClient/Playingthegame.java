@@ -3,12 +3,15 @@ package gameClient;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import Server.Game_Server;
 import Server.game_service;
 import dataStructure.DGraph;
 import dataStructure.Fruits;
 import dataStructure.Robot;
 import utils.KML;
+import utils.StdDraw;
 
 /**
  * In this class the player choose the game he wants to play- from [0-23]
@@ -30,6 +33,19 @@ public class Playingthegame {
 		//today
 		System.out.println("Enter a game you want to play");
 		System.out.println("Enter 1 for automatic, 0 to yourself");
+		//StdDraw.setCanvasSize(100, 100);
+       // StdDraw.setXscale(-50, 50);
+        //StdDraw.setYscale(-50, 50);
+        String s = JOptionPane.showInputDialog(null, "Choose a fild game");
+        int numofgame = Integer.parseInt(s);
+        String [] p = {"automatic","manual"};
+        int choose;
+        Object game_select = JOptionPane.showInputDialog(null, "Choose a mood", "Note", JOptionPane.INFORMATION_MESSAGE,null, p, p[0]);
+        if(game_select==p[0]) {
+        	choose=1;
+        }
+        else
+        	choose =0;
 //		tryjframewindow trynewgui=new tryjframewindow();
 //		trynewgui.setVisible(true);
 //		
@@ -46,15 +62,9 @@ public class Playingthegame {
 //		System.out.println("num of game="+numofgame);
 //		System.out.println("howto play="+choose);
 		
-		Scanner in=new Scanner(System.in);
-		int b=in.nextInt();
-		int numofgame=b; 
-		
-		Scanner in2=new Scanner(System.in);
-		int b2=in.nextInt();
-		int choose=b2;
-		
-		
+//		Scanner in=new Scanner(System.in);
+//		int b=in.nextInt();
+//		int numofgame=b; 
 		
 
 
@@ -88,8 +98,8 @@ public class Playingthegame {
 		}
 		else
 			if(choose ==0) {
-				//			timethread a=new timethread(mygame,game,mygame.getRobots());
-				//			a.start();
+//							timethread a=new timethread(mygame,game,mygame.getRobots());
+//							a.start();
 				mygame.setGamemanual(true);
 				mygame.manual(mygame.getGame());
 				

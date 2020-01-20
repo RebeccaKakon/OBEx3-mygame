@@ -29,6 +29,7 @@ import utils.KML;
 public class AutomaticGame {
 	public  void automatic( LinkedList<Fruits> fruits, LinkedList<Robot> robots,game_service game,DGraph gg,timethread a) {
 		// TODO Auto-generated method stub
+		System.out.println("automatic");
 		algo cal=new algo();
 		Fruits ff=new Fruits();
 
@@ -53,38 +54,41 @@ public class AutomaticGame {
 		//this.setVisible(true);
 		game.startGame();
 		a.start();
-//		KML k=new KML();
-//		Thread kml=new Thread (new Runnable() {
-//			@Override
-//			public void run() {
-//				try {
-//					k.objKML();
-//				}
-//				catch(ParseException|InterruptedException ex) {
-//					ex.printStackTrace();
-//				}
-//			}
-//			
-//		});
-//		kml.start();
-		while(game.isRunning()) {
-
+		//		KML k=new KML();
+		//		Thread kml=new Thread (new Runnable() {
+		//			@Override
+		//			public void run() {
+		//				try {
+		//					k.objKML();
+		//				}
+		//				catch(ParseException|InterruptedException ex) {
+		//					ex.printStackTrace();
+		//				}
+		//			}
+		//			
+		//		});
+		//		kml.start();
+		while(game.isRunning() && game!=null &&game.timeToEnd()>1) {
+			System.out.println("time="+game.timeToEnd());
 			cal.moveRobots(game, gg);
-			if(game.timeToEnd()<1)
+			if(game!=null)
+			if(game.timeToEnd()<=2) {    ///1
+				System.out.println("stop!!!!");
 				a.exit=false;
-			
+			}
+
 		}
 		Playingthegame.kmlstring.kmlfinishgame();
-		game.stopGame();   //19/1 nite
+		//game.stopGame();   //19/1 nite
 		a.exit=false;
-		
 
 
-		
+
+
 		//System.out.println(game.toString());
-		
+
 		System.exit(0);
-		
+
 
 
 	}

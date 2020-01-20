@@ -30,7 +30,6 @@ public class tryjframewindow extends JFrame implements ActionListener, MouseList
 	}
 
 	public void init () {
-
 		this.setSize(500, 700);
 		JFrame newFrame = new JFrame();
 		ImageIcon us = new ImageIcon("C:/Users/dalia/Desktop/mazeofwazepicture.jpg");

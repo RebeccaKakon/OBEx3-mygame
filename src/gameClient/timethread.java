@@ -42,30 +42,34 @@ public class timethread extends Thread  {
 
 	public void run() {
 
+		try {
+			while(this.isAlive() && this.game.isRunning() &&this.exit==true && this.game.timeToEnd()>0.1) {
 
-		while(this.isAlive() && this.game.isRunning() &&this.exit==true && this.game.timeToEnd()>0.1) {
-			try {
 				timethread.sleep(100);
 
-				if(this.game!=null)
+				if(this.game!=null && game.timeToEnd()>=1) {
 
-					if(this.game.isRunning()) {
-						this.game.move();
-						this.gui.repaint();
-					}
+					//if(this.game.isRunning()) {
+					this.game.move();
+					this.gui.repaint();
+					//}
+				}
 
 
 
 				Robot y=new Robot();
 				this.Robots=y.initr(game.getRobots().toString());
-			} 
-			catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+			}
+		} 
 
-			//System.out.println("i draw");
-		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+
+		}	
+
+		//System.out.println("i draw");
+
 		return;
 
 

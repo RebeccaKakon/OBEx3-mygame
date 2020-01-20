@@ -91,8 +91,12 @@ public class algo {
 
 	public void moveRobots(game_service game, DGraph gg) {
 		algo cal=new algo();
-		long t = game.timeToEnd();
-		List<String> log = game.move();
+//		long t ;
+//		if(game!=null)
+//		t = game.timeToEnd();
+//		List<String> log=null;   //20/1
+//		if(game!=null)   //20/1
+			List<String> log = game.move();
 		int numrobot=cal.numrobot(game.toString());
 		if(log!=null) {
 			for(int i=0;i<numrobot;i++) {

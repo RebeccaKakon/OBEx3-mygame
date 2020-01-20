@@ -460,11 +460,13 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	public void manual(game_service game) {
 		// TODO Auto-generated method stub
 		
+		this.setVisible(true);
 		Fruits ff=new Fruits();
 		this.fruits=(LinkedList<Fruits>) ff.initf(game.getFruits().toString(),gg);
 		this.gg.init(game.getGraph().toString());
-		this.setVisible(true);
 		this.repaint();
+		
+		
 		
 
 
