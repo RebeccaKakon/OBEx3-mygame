@@ -16,3 +16,9 @@ for more information you can go to our wiki page
 
 ![שלב 2ם](https://user-images.githubusercontent.com/57682267/72739912-50d8fc00-3bad-11ea-952a-93ddfc1f8cae.png)
 
+
+
+an exapmle of a game
+
+![ללא שם](https://user-images.githubusercontent.com/57682267/72740026-8a116c00-3bad-11ea-95d4-cfb1daf4ef56.png)
+
