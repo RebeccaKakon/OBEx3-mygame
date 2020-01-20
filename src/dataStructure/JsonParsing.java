@@ -6,6 +6,7 @@ package dataStructure;
 //import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonParseException;
+/**
+ * help us to read info fron json
+ * 
+ *
+ */
 
 public class JsonParsing {
 

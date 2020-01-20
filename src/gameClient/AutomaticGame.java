@@ -8,7 +8,7 @@ import Server.game_service;
 import dataStructure.DGraph;
 import dataStructure.Fruits;
 import dataStructure.Robot;
-import utils.KML;
+import utils.KML_Logger;
 
 /**
  * This class represents an automatic game:

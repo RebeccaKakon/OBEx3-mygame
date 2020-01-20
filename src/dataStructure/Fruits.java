@@ -40,6 +40,12 @@ public class Fruits  {
 		//this.onedge=wherefruit(pos);
 
 	}
+	/**
+	 * this method will search on witch edge  we have the fruit.
+	 * it will use the method distance to get to the closest edge.
+	 * @param pos
+	 * @return
+	 */
 
 	public edgedata wherefruit(Point3D pos) {
 		// TODO Auto-generated method stub

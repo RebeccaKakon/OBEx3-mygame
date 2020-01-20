@@ -60,68 +60,76 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 		this.g= ((DGraph) g);
 
 	}
+	/**
+	 * This method will get a graph from the user or from a file and create the graph
+	 */
 
 	@Override
 	public void init(String file_name) {
 		// TODO Auto-generated method stub
 		try
-        {
-            FileInputStream file = new FileInputStream(file_name);
-            ObjectInputStream in = new ObjectInputStream(file); 
-            g= (DGraph)in.readObject();
-            in.close();
-            file.close();
-            System.out.println("Object has been deserialized");
-        }
+		{
+			FileInputStream file = new FileInputStream(file_name);
+			ObjectInputStream in = new ObjectInputStream(file); 
+			g= (DGraph)in.readObject();
+			in.close();
+			file.close();
+			System.out.println("Object has been deserialized");
+		}
 
-        catch(IOException ex)
-        {
-            System.out.println(ex);
-        }
+		catch(IOException ex)
+		{
+			System.out.println(ex);
+		}
 
-        catch(ClassNotFoundException ex)
-        {
-            System.out.println("ClassNotFoundException is caught");
-        }
-		
+		catch(ClassNotFoundException ex)
+		{
+			System.out.println("ClassNotFoundException is caught");
+		}
+
 	}
 
 
 
-
+   /**
+    *  This method saves the graph as a file.
+    */
 
 	@Override
 	public void save(String file_name) {
 		// TODO Auto-generated method stub
-		
-		 try
-	        {
-	            FileOutputStream file = new FileOutputStream(file_name);
-	            ObjectOutputStream out = new ObjectOutputStream(file);
 
-	            out.writeObject(this.g);
+		try
+		{
+			FileOutputStream file = new FileOutputStream(file_name);
+			ObjectOutputStream out = new ObjectOutputStream(file);
 
-	            out.close();
-	            file.close();
+			out.writeObject(this.g);
 
-	            System.out.println("Object has been serialized");
-	        }
-	        catch(IOException ex)
-	        {
-	            System.out.println("IOException is caught");
-	        }
+			out.close();
+			file.close();
+
+			System.out.println("Object has been serialized");
+		}
+		catch(IOException ex)
+		{
+			System.out.println("IOException is caught");
+		}
 
 
 
 
 	} 
 
-
+     /**
+      * This method will check if the graph is connect.
+      *  A connect graph is a graph witch each node can get to all other node in the graph
+      */
 
 
 	@Override
 	public boolean isConnected() {
-		
+
 		// TODO Auto-generated method stub
 		if(this.getG().getV().size()==0) return true;
 		LinkedList<node_data> c=new LinkedList<node_data>( this.g.getV());
@@ -163,6 +171,9 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 		return true;	
 
 	}
+	/**
+	 * This method returns the length of the shortest path between src to dest
+	 */
 
 	@Override
 	public double shortestPathDist(int src, int dest) {
@@ -215,6 +226,9 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 
 		return this.g.getHashnodes().get(dest).getWeight();
 	}
+	/**
+	 * with this method we can have the shortest pass between 2 node (src,des).
+	 */
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
 		// TODO Auto-generated method stub
@@ -230,6 +244,20 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 
 		return shortt;
 	}
+
+	/**
+	 * This method will get a list of nodes and will find a path that will
+	 * visits all those node on the list. We will send the graph to the IsConnect function,
+	 * if the graph is not connected we have a function that will copy our graph,
+	 * remove all the nodes that aren’t on the list, 
+	 * and then if the graph is conneded- we will send back the new graph to TSP function,
+	 * if not we will return null (because TSP is working only on a connecnted list. 
+	 * If the graph is connect the Tsp function works as follows: we go over the list of targets that we got,
+	 * with 2 pointers, one pointer that stands on the “src” node and one function that stands 
+	 * on the “dest” node. each time we will call the Shortpass function and mark this node(tag) 
+	 * as a node that we already visit it. and then delete this node that we marked from the return list, 
+	 * in that way we will go over all the targets that we got.
+	 */
 
 
 	@Override
@@ -309,7 +337,7 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 
 
 		DGraph graflist= new DGraph( g);
-	
+
 		Collection<node_data> c=new LinkedList<node_data>( graflist.getV());
 		Iterator<node_data> p=c.iterator();
 		System.out.println(c.size());
@@ -334,8 +362,8 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 		//				graflist.removeNode(current.getKey());
 		//			}
 		//		}
-//		Graph_GUI gg=new Graph_GUI(graflist);
-//		gg.setVisible(true);
+		//		Graph_GUI gg=new Graph_GUI(graflist);
+		//		gg.setVisible(true);
 
 		Graph_Algo algo=new Graph_Algo(graflist);
 		if(algo.isConnected()==true) {
@@ -345,9 +373,9 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 		else {
 			System.out.println("not connect");
 			return null;
-			
+
 		}
-			
+
 
 	}
 
@@ -358,24 +386,24 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 
 		graph returnn =  new DGraph();
 
-        Iterator<node_data> I =  this.g.getV().iterator();
-        while (I.hasNext()){
-        node_data temp = (node_data) I.next();
-        returnn.addNode(temp);
-      //  System.out.println(temp.getKey());
-        Collection <edge_data> edges = new LinkedList<edge_data>();
-        edges =  this.g.getE(temp.getKey());
-        if (edges!=null) {
-            Iterator<edge_data> J = edges.iterator();
-            while (J.hasNext()) {
-                edge_data edge = (edge_data) J.next();
-                returnn.connect(edge.getSrc(), edge.getDest(), edge.getWeight());
-            }
-        }
-    }
-    return returnn;
-}
-	
+		Iterator<node_data> I =  this.g.getV().iterator();
+		while (I.hasNext()){
+			node_data temp = (node_data) I.next();
+			returnn.addNode(temp);
+			//  System.out.println(temp.getKey());
+			Collection <edge_data> edges = new LinkedList<edge_data>();
+			edges =  this.g.getE(temp.getKey());
+			if (edges!=null) {
+				Iterator<edge_data> J = edges.iterator();
+				while (J.hasNext()) {
+					edge_data edge = (edge_data) J.next();
+					returnn.connect(edge.getSrc(), edge.getDest(), edge.getWeight());
+				}
+			}
+		}
+		return returnn;
+	}
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -3,13 +3,13 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
-public class KML {
+public class KML_Logger {
    
     private StringBuffer kmlstring;
     
     private int numberofgame;
 
-    public KML(int numberofgame) 
+    public KML_Logger(int numberofgame) 
     {
         this.numberofgame = numberofgame;
         kmlstring = new StringBuffer();

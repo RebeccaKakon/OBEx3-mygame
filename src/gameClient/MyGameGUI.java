@@ -51,7 +51,7 @@ import dataStructure.nodedata;
 import gui.GraphGUIstddraw;
 import gui.Graph_GUI;
 import oop_dataStructure.oop_graph;
-import utils.KML;
+import utils.KML_Logger;
 import utils.Point3D;
 
 
@@ -71,7 +71,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	private boolean gamemanual;
 	public static boolean insert=true;
 	public static boolean move=false;
-	
+
 
 	public void setGamemanual(boolean gamemanual) {
 		this.gamemanual = gamemanual;
@@ -148,6 +148,11 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 		initGUI( );
 	}
 
+	/**
+	 * set all our information for our window to be displayed,
+	 *  in that way we can run our factions Directly from the window.
+	 */
+
 	private void initGUI() {
 
 		this.setSize(1000, 1000);
@@ -201,15 +206,17 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 		//this.paint(getGraphics());
 		this.addMouseListener(this);
 	}
-
+	/**
+	 * in this method we "paint" all the information we got so far-our graph,robots and fruits.
+	 */
 	@Override
 	public void paint(Graphics f) {
 		// System.out.println("9999999");
-		 
-		
-	   
-		
-		
+
+
+
+
+
 		BufferedImage bufferedImage = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = bufferedImage.createGraphics();
 
@@ -298,11 +305,11 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
+
+
 		g.drawString(a, this.getWidth()-550, this.getHeight()-180);
 		//today
-		
+
 
 		if (this.fruits != null) {
 			fruits.clear();
@@ -448,26 +455,26 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	//
 	//
 	//	}
-	
+
 	/**
 	 * This function represents the manual game.
 	 * 
 	 * 
 	 */
-	
+
 
 
 	public void manual(game_service game) {
 		// TODO Auto-generated method stub
-		
+
 		this.setVisible(true);
 		Fruits ff=new Fruits();
 		this.fruits=(LinkedList<Fruits>) ff.initf(game.getFruits().toString(),gg);
 		this.gg.init(game.getGraph().toString());
 		this.repaint();
-		
-		
-		
+
+
+
 
 
 	}
@@ -526,6 +533,14 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	//		this.robots.add(r);
 	//
 	//	}
+	
+	/**
+	 * this methods helps our robot to choose in our auto mood the closest node that have a fruit
+	 * @param g
+	 * @param src
+	 * @param fruits
+	 * @return
+	 */
 
 
 	private static int nextNode2(DGraph g, int src,LinkedList<Fruits> fruits) {
@@ -585,7 +600,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	public static boolean two =false;
 	public static Point3D src=null;
 	public static int count=0;
-	
+
 	/**
 	 * This function helps us play the manual game,
 	 * The function is using the "addrobotbyclick" function,
@@ -601,7 +616,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		if(gamemanual == true) {
-			
+
 
 			algo cal2=new algo();
 			int numofrobot=cal2.numrobot(game.toString());
@@ -627,10 +642,10 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 					game.startGame();
 					timethread a=new timethread(this,game,this.getRobots());
 					a.start();
-					
-					
-					
-					
+
+
+
+
 					move=true;
 				}
 
@@ -695,27 +710,27 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 
 	}
 
-//	@Override
-//	public void run() {
-//		// TODO Auto-generated method stub
-//		while(this.game.isRunning()) {
-//			try {
-//				timethread.sleep(100);
-//				
-//				this.repaint();
-//				this.game.move();
-//				
-//				Robot y=new Robot();
-//				this.robots=y.initr(game.getRobots().toString());
-//			} 
-//			catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}	
-//
-//			//System.out.println("i draw");
-//		}
-//	}
+	//	@Override
+	//	public void run() {
+	//		// TODO Auto-generated method stub
+	//		while(this.game.isRunning()) {
+	//			try {
+	//				timethread.sleep(100);
+	//				
+	//				this.repaint();
+	//				this.game.move();
+	//				
+	//				Robot y=new Robot();
+	//				this.robots=y.initr(game.getRobots().toString());
+	//			} 
+	//			catch (InterruptedException e) {
+	//				// TODO Auto-generated catch block
+	//				e.printStackTrace();
+	//			}	
+	//
+	//			//System.out.println("i draw");
+	//		}
+	//	}
 
 
 

@@ -10,7 +10,7 @@ import Server.game_service;
 import dataStructure.DGraph;
 import dataStructure.Fruits;
 import dataStructure.Robot;
-import utils.KML;
+import utils.KML_Logger;
 import utils.StdDraw;
 
 /**
@@ -24,7 +24,7 @@ import utils.StdDraw;
 
 public class Playingthegame {
 
-	public static KML kmlstring;
+	public static KML_Logger kmlstring;
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
@@ -69,7 +69,7 @@ public class Playingthegame {
 
 
 
-		kmlstring=new KML (numofgame);
+		kmlstring=new KML_Logger (numofgame);
 		game_service game=Game_Server.getServer(numofgame);
 		System.out.println(game.toString());
 

@@ -20,7 +20,13 @@ import utils.Point3D;
 
 import java.io.FileNotFoundException;
 
-
+/**
+ * A graph builts by points and edges. 
+ * Each graph contain a collection of node and a collectiom of edges, 
+ * Our information of nodes and edges is saves on a HashMaps to helps us gets information effectively
+ * @author shahar&rivka
+ *
+ */
 
 
 
@@ -94,6 +100,9 @@ public class DGraph implements graph,Serializable{
 		return null;
 
 	}
+	/**
+	 * This method will add a node to the graph.
+	 */
 
 	@Override
 	public void addNode(node_data n) {  //check
@@ -150,7 +159,9 @@ public class DGraph implements graph,Serializable{
 
 	}
 
-
+/**
+ * This method connect between 2 node(src,des), in this way we have our new edges on the graph
+ */
 
 	@Override
 	public void connect(int src, int dest, double w) {
@@ -197,11 +208,17 @@ public class DGraph implements graph,Serializable{
 		MC++;
 		updateListener();
 	}
+	/**
+	 * This method will give us the collection of nodes in the graph
+	 */
 	@Override
 	public Collection<node_data> getV() {
 		// TODO Auto-generated method stub
 		return hashnodes.values();   
 	}
+	/**
+	 * This method will give us the collection of edges in the graph
+	 */
 
 	@Override
 	public Collection<edge_data> getE(int node_id) {
@@ -213,6 +230,12 @@ public class DGraph implements graph,Serializable{
 
 
 	}
+	/**
+	 * This method will delete a certain node from the graph ,
+	 *  with each node that we are deleting we will also delete all of the nodes that are connectes to it.
+	 *  To do so we will first delete the specific node from our collection of nodes (from the HashMap), 
+	 *  and then we will pass on all HashMaps of edges and delete all the edges that connect to this node.
+	 */
 
 	@Override
 	public node_data removeNode(int key) {
@@ -241,7 +264,9 @@ public class DGraph implements graph,Serializable{
 
 	}
 
-
+    /**
+     * This method delete an edge from the graph
+     */
 
 
 	@Override
