@@ -101,7 +101,8 @@ public class DGraph implements graph,Serializable{
 
 	}
 	/**
-	 * This method will add a node to the graph.
+	 * This method will add a node to the graph, if this node is allready exist 
+	 * it want add.
 	 */
 
 	@Override
@@ -368,6 +369,11 @@ public class DGraph implements graph,Serializable{
 //		
 //		
 //	}
+	/** 
+	 * This function init our graph from a String that represent our grpah. 
+	 * @param g
+	 * 
+	 */
 	
 	
 	public void init (String g)  {

@@ -3,6 +3,8 @@ package gameClient;
 import java.util.LinkedList;
 
 import Server.game_service;
+import dataStructure.DGraph;
+import dataStructure.Fruits;
 import dataStructure.Robot;
 import gui.Graph_GUI;
 
@@ -19,15 +21,19 @@ public class timethread extends Thread  {
 	MyGameGUI gui;
 	game_service game;
 	LinkedList<Robot>Robots;
+	DGraph gg;
 	public boolean exit=true;
+	
 
 
 
-	public timethread(MyGameGUI gui,game_service game,LinkedList<Robot>Robots) {
+	public timethread(MyGameGUI gui,game_service game,LinkedList<Robot>Robots,DGraph gg) {
 		// TODO Auto-generated constructor stub
 		this.gui=gui;
 		this.game=game;
 		this.Robots=Robots;
+		this.gg=gg;
+		
 	}
 
 	public static void main(String[] args) {
@@ -43,15 +49,21 @@ public class timethread extends Thread  {
 	public void run() {
 
 		try {
+			
 			while(this.isAlive() && this.game.isRunning() &&this.exit==true && this.game.timeToEnd()>0.1) {
+               
+				timethread.sleep(100);   //game0 -time= 137
 
-				timethread.sleep(100);
+
 
 				if(this.game!=null && game.timeToEnd()>=1) {
 
 					//if(this.game.isRunning()) {
 					this.game.move();
 					this.gui.repaint();
+					Fruits f=new Fruits(this.gg);
+					f.initf(this.game.getFruits().toString(), gg);
+					
 					//}
 				}
 

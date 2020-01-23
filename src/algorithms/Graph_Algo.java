@@ -179,6 +179,7 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 	public double shortestPathDist(int src, int dest) {
 
 		// TODO Auto-generated method stub
+		
 		Collection<node_data> c= this.g.getV();
 		Iterator<node_data> I=c.iterator();
 		while(I.hasNext()) {
@@ -191,7 +192,7 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 		q.add((nodedata) this.g.getHashnodes().get(src));
 		int count=0;
 		boolean falg=true;
-		while(count!=1000&&falg==true) {
+		while(count!=100000&&falg==true) {
 			//f(q.peek().getTag()==0) {
 			if(this.g.getHashedges().get(q.peek().getKey()).isEmpty())
 				falg=false;
@@ -226,14 +227,25 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 
 		return this.g.getHashnodes().get(dest).getWeight();
 	}
+	
+	
+
+	
+	
+	
 	/**
 	 * with this method we can have the shortest pass between 2 node (src,des).
 	 */
+	
+	
+	
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
 		// TODO Auto-generated method stub
+		System.out.println("shortestPathDist=" +shortestPathDist(src, dest));
 		if(
 				shortestPathDist(src, dest)==-1) return null;
+		
 		LinkedList<node_data> shortt=new LinkedList<node_data>();
 		nodedata move=(nodedata) this.g.getHashnodes().get(dest);
 		while(move!=this.g.getHashnodes().get(src)) {
@@ -241,7 +253,12 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 			move=(nodedata) this.g.getHashnodes().get((Integer.valueOf(move.getWay())));
 		}
 		shortt.push((nodedata) this.g.getHashnodes().get(src));
-
+        Iterator print =shortt.iterator();
+        System.out.println("in short pass function");
+        while(print.hasNext()) {
+        	nodedata temp=(nodedata) print.next();
+        	System.out.println(temp.getKey());
+        }
 		return shortt;
 	}
 
@@ -459,8 +476,15 @@ public class Graph_Algo implements graph_algorithms,Serializable{
 
 		Graph_Algo test=new Graph_Algo(x);
 
-		test.save("rivkashshar.txt");
-		test.init("rivkashshar.txt");
+		
+		 System.out.println(test.shortestPathDist(1, 1));
+		 List<node_data> qq=test.shortestPath(1, 1);
+		 Iterator<node_data> I=qq.iterator();
+		 while(I.hasNext()) {
+			 System.out.println(I.next().getKey());
+		 }
+		 
+		
 
 
 

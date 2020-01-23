@@ -4,13 +4,14 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/secondyear/gson-2.8.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/src/GameServer_v0.27.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/src/java-json.jar"/>
 	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/src/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/src/JavaAPIforKml-2.2.0 (1).jar"/>
 	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/src/jaxb-api-2.1 (1).jar"/>
 	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/src/jaxb-impl-2.1.17 (1).jar"/>
 	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/src/jaxb-xjc-2.2 (1).jar"/>
 	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/src/stax-api-1.0-2 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/bin/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/bin/GameServer_v0.33.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dalia/eclipse-workspace/Ex3/bin/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

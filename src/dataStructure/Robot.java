@@ -1,6 +1,7 @@
 package dataStructure;
 
 import java.util.Iterator;
+
 import java.util.LinkedList;
 
 import com.google.gson.JsonArray;
@@ -10,7 +11,13 @@ import com.google.gson.JsonParser;
 
 import utils.Point3D;
 
-public class Robot {
+/**
+ * This class represent a Robot
+ * @author shahar & rivka 
+ *
+ */
+
+public class Robot implements Robots{
 
 	int id;
 	double value;
@@ -61,7 +68,11 @@ public class Robot {
 		return Pos;
 	}
 
-
+    
+	/**
+	 * init all the robots to a LinkedList of robots
+	 * 
+	 */
 
 	public LinkedList <Robot> initr(String string) {
 

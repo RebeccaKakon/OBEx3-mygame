@@ -27,26 +27,20 @@ import utils.KML_Logger;
  */
 
 public class AutomaticGame {
-	public  void automatic( LinkedList<Fruits> fruits, LinkedList<Robot> robots,game_service game,DGraph gg,timethread a) {
+	public  void automatic( LinkedList<Fruits> fruits, LinkedList<Robot> robots,game_service game,DGraph gg,timethread a,int level) {
 		// TODO Auto-generated method stub
 		System.out.println("automatic");
-		algo cal=new algo();
-		Fruits ff=new Fruits();
+		algo cal2=new algo();
+		Fruits ff=new Fruits(gg);
 
-		//	System.out.println(game.getFruits().toString());
+		System.out.println(game.getFruits().toString());
 		fruits=(LinkedList<Fruits>) ff.initf(game.getFruits().toString(),gg);
 
-		Iterator w=fruits.iterator();
-		while(w.hasNext()) {
-			Fruits c=(Fruits) w.next();
-			//.out.println("type of fruit="+c.getType());
-		}
-
-
-		int numrobot=cal.numrobot(game.toString());
+		int numrobot=cal2.numrobot(game.toString());
+		algo cal=new algo(gg,fruits, robots, game, numrobot);   //now
 		int count=0;
 		while(count!=numrobot) {
-			cal.putRobot(game , count,robots);
+			cal.putRobot(game , count,robots,level);
 			count++;
 		}
 		Robot y=new Robot();
@@ -54,23 +48,11 @@ public class AutomaticGame {
 		//this.setVisible(true);
 		game.startGame();
 		a.start();
-		//		KML k=new KML();
-		//		Thread kml=new Thread (new Runnable() {
-		//			@Override
-		//			public void run() {
-		//				try {
-		//					k.objKML();
-		//				}
-		//				catch(ParseException|InterruptedException ex) {
-		//					ex.printStackTrace();
-		//				}
-		//			}
-		//			
-		//		});
-		//		kml.start();
+		
 		while(game.isRunning() && game!=null &&game.timeToEnd()>1) {
-			System.out.println("time="+game.timeToEnd());
-			cal.moveRobots(game, gg);
+			//System.out.println("time="+game.timeToEnd());
+			cal.moveRobots(game, gg,level);
+			
 			if(game!=null)
 			if(game.timeToEnd()<=2) {    ///1
 				System.out.println("stop!!!!");
@@ -79,6 +61,16 @@ public class AutomaticGame {
 
 		}
 		Playingthegame.kmlstring.kmlfinishgame();
+		String remark = Playingthegame.kmlstring.toString();
+		game.sendKML(remark);
+		
+			try {
+				SimpleDB.printLog();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		//game.stopGame();   //19/1 nite
 		a.exit=false;
 

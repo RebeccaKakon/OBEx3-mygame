@@ -68,7 +68,7 @@ public class KML_Logger {
 
     public void Place_Mark(String id, String location)
     {
-    	System.out.println("placemark");
+    	//System.out.println("placemark");
         LocalDateTime time = LocalDateTime.now();
         kmlstring.append(" <Placemark>\r\n" +
                         "      <TimeStamp>\r\n" +

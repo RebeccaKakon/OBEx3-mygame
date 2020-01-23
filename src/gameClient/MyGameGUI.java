@@ -319,7 +319,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 			fruits=new LinkedList<Fruits>();
 		}
 
-		Fruits temp=new Fruits();
+		Fruits temp=new Fruits(this.gg);
 		fruits=temp.initf(game.getFruits().toString(),this.gg);
 
 
@@ -468,7 +468,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 		// TODO Auto-generated method stub
 
 		this.setVisible(true);
-		Fruits ff=new Fruits();
+		Fruits ff=new Fruits(this.gg);
 		this.fruits=(LinkedList<Fruits>) ff.initf(game.getFruits().toString(),gg);
 		this.gg.init(game.getGraph().toString());
 		this.repaint();
@@ -543,35 +543,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 	 */
 
 
-	private static int nextNode2(DGraph g, int src,LinkedList<Fruits> fruits) {
-		//to do int(tsp) to each fruit 
-		// ans then to to tsp that returns olis and to go by it
-		algo cal=new algo();
-		double min=1000;
-		Point3D place=null;
-		double xscale= scale(g.getHashnodes().get(src).getLocation().x(),g.getMinx(),g.getMaxx(),50,950);
-		double yscale= scale(g.getHashnodes().get(src).getLocation().y(),g.getMiny(),g.getMaxy(),70,930);
-		Point3D p=new Point3D(xscale,yscale,0);
-		Iterator<Fruits> I=fruits.iterator();
-		while(I.hasNext()) {
-			Fruits f=(Fruits) I.next();
-			if(cal.distance(p,f.getPos())<min) {
-				place=new Point3D(f.getPos());
-				min=cal.distance(p,f.getPos());
-			}
-		}
-		Fruits temp=new Fruits();
-		edgedata edgefruit= temp.wherefruit(place);
-		//		int[] answer=new int [2];
-		//		answer[0]=edgefruit.getSrc();
-		//		answer[1]=edgefruit.getDest();
-		return edgefruit.getDest();
-
-
-
-
-	}
-
+	
 
 	@Override
 	public void graphUpdated() {
@@ -640,7 +612,7 @@ public class MyGameGUI extends JFrame implements ActionListener, MouseListener, 
 				else {
 					insert=false;
 					game.startGame();
-					timethread a=new timethread(this,game,this.getRobots());
+					timethread a=new timethread(this,game,this.getRobots(),this.gg);
 					a.start();
 
 

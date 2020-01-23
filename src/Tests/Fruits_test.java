@@ -23,12 +23,13 @@ class Fruits_test {
 
 	@Test
 	public void getPos() {
+		DGraph a= new DGraph();
 		Point3D p1 = new Point3D(1, 2, 0);
 		Point3D p2 = new Point3D(2, 4, 0);
 		Point3D p3 = new Point3D(5, 6, 0);
-		Fruits f1 = new Fruits();
-		Fruits f2 = new Fruits();
-		Fruits f3 = new Fruits();
+		Fruits f1 = new Fruits(a);
+		Fruits f2 = new Fruits(a);
+		Fruits f3 = new Fruits(a);
 
 		f1.setPos(p1);
 		f2.setPos(p2);
@@ -45,9 +46,10 @@ class Fruits_test {
 
 	@Test
 	public void setPos() {
-		Fruits f1 = new Fruits();
-		Fruits f2 = new Fruits();
-		Fruits f3 = new Fruits();
+		DGraph a= new DGraph();
+		Fruits f1 = new Fruits(a);
+		Fruits f2 = new Fruits(a);
+		Fruits f3 = new Fruits(a);
 		Point3D p1 = new Point3D(1, 2, 0);
 		Point3D p2 = new Point3D(2, 4, 0);
 		Point3D p3 = new Point3D(5, 6, 0);
